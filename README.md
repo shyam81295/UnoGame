@@ -1,5 +1,6 @@
 # UnoGame
-Creating this UNO Game to learn OOPS, Low-level Design, System Design(High-Level Design), Scalability, FrontEnd, BackEnd, DB, Distributed Systems, etc.
+To improve Software Engineer skills, creating this UNO Game to learn OOPS, Low-level Design, System Design(High-Level Design), Scalability, FrontEnd, BackEnd, DB, Distributed Systems, etc.
+Understanding of software components like CI/CD, automated testing, etc. 
 
 ## Aim:
 1. To make a highly scalable UNO Web App.
