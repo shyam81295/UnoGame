@@ -9,3 +9,7 @@ Creating this UNO Game to learn OOPS, Low-level Design, System Design(High-Level
 5. It should use open-source libraries.
 6. Automate wherever necessary (tests, deployment, failover, etc.)
 7. It should follow TDD (Test-driven development) approach. 
+
+## Tasks:
+- [ ] Add automated test library.
+- [ ] Add Travis CI. 
