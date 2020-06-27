@@ -1,6 +1,5 @@
 # UnoGame
-To improve Software Engineer skills, creating this UNO Game to learn OOPS, Low-level Design, System Design(High-Level Design), Scalability, FrontEnd, BackEnd, DB, Distributed Systems, etc.
-Understanding of software components like CI/CD, automated testing, etc. 
+Creating this UNO Game to learn OOPS, Low-level Design, System Design(High-Level Design), Scalability, FrontEnd, BackEnd, DB, Distributed Systems, etc.
 
 ## Aim:
 1. To make a highly scalable UNO Web App.
@@ -10,7 +9,3 @@ Understanding of software components like CI/CD, automated testing, etc.
 5. It should use open-source libraries.
 6. Automate wherever necessary (tests, deployment, failover, etc.)
 7. It should follow TDD (Test-driven development) approach. 
-
-## Tasks:
-- [ ] Add automated test library.
-- [ ] Add Travis CI. 
