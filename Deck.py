@@ -1,4 +1,4 @@
-#   Filename:       Card.py
+#   Filename:       Deck.py
 #   Description:    This class will represent UNO Deck used in games.
 #
 #   Copyright (C) 2020 Shyam Singh

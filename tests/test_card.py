@@ -1,4 +1,4 @@
-#   Filename:       test_card.py
+#   Filename:       tests/test_card.py
 #   Description:    Tests class 'Card'
 #
 #   Copyright (C) 2020 Shyam Singh

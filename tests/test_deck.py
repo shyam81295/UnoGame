@@ -1,4 +1,4 @@
-#   Filename:       test_deck.py
+#   Filename:       tests/test_deck.py
 #   Description:    Tests class 'Deck'
 #
 #   Copyright (C) 2020 Shyam Singh
