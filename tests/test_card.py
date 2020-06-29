@@ -38,11 +38,11 @@ class TestCard(unittest.TestCase):
         card1 = Card(
             color=constant.COLOR_WILD, cardtype=constant.WILD_PLUS4_CARD
         )
-        self.assertEqual(card1.type, constant.WILD_PLUS4_CARD)
+        self.assertEqual(card1.cardtype, constant.WILD_PLUS4_CARD)
         self.assertEqual(card1.color, constant.COLOR_WILD)
 
         card2 = Card(color=constant.COLOR4, cardtype=constant.SKIP_CARD)
-        self.assertEqual(card2.type, constant.SKIP_CARD)
+        self.assertEqual(card2.cardtype, constant.SKIP_CARD)
         self.assertEqual(card2.color, constant.COLOR4)
 
     def test_card_initialise_failed(self):

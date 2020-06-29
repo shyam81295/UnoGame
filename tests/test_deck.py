@@ -32,20 +32,29 @@ sys.path.append(pwd)
 class TestDeck(unittest.TestCase):
     def test_deck_cards_list(self):
         deck = Deck()
-        # test cards list of Deck are proper or not
-        # count different types of cards
-        # 4 Wild Cards
-        # 4 Wild +4 Cards
-        # For each color:
-        #   1 Card 0
-        #   2 Cards for 1-9
-        #   2 Skip Cards
-        #   2 Reverse Cards
-        #   2 +2 Cards
+        self.count_deck_cards(deck)
 
-        # Check in the list do we have all the above count of cards with
-        # respective color.
+    def test_shuffled_deck_cards_list(self):
+        deck = Deck()
+        # deck is shuffled and then tested
+        deck.get_shuffled_deck()
+        self.count_deck_cards(deck)
 
+    # TODO: Add more test cases for cards_count
+    # test cards list of Deck are proper or not
+    # count different types of cards
+    # 4 Wild Cards
+    # 4 Wild +4 Cards
+    # For each color:
+    #   1 Card 0
+    #   2 Cards for 1-9
+    #   2 Skip Cards
+    #   2 Reverse Cards
+    #   2 +2 Cards
+
+    # Check in the list do we have all the above count of cards with
+    # respective color.
+    def count_deck_cards(self, deck):
         # 4 Wild Cards
         wildcard_count = deck.count_card(
             cardtype=constant.WILD_CARD, color=constant.COLOR_WILD

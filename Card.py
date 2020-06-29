@@ -38,4 +38,4 @@ class Card:
 
         self.face = face
         self.color = color
-        self.type = cardtype
+        self.cardtype = cardtype

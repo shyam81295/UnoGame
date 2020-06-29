@@ -16,6 +16,7 @@
 #   limitations under the License.
 
 from collections import Counter, defaultdict
+import random
 
 from Card import Card
 import constant
@@ -96,4 +97,16 @@ class Deck:
                 self.cards_list.append(card)
 
         for card in self.cards_list:
-            self.count_cards[(card.color, card.type)] += 1
+            self.count_cards[(card.color, card.cardtype)] += 1
+
+    def get_shuffled_deck(self):
+        # Using random.shuffle()
+        # Why this works?
+        # How this works?
+        print("Deck will be shuffled now.")
+        random.shuffle(self.cards_list)
+
+    # TODO:Replace this with __str__()
+    def print_deck(self):
+        deck = [(card.cardtype, card.color) for card in self.cards_list]
+        print(deck)

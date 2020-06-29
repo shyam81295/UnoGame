@@ -1,6 +1,6 @@
 [//]: #   "Below will be read as comments in Markdown file."
 
-[//]: #   "Filename:       tests/__init__.py"
+[//]: #   "Filename:       README.md"
 [//]: #   "Description:    created for treating 'tests' as a module"
 [//]: #
 [//]: #   "Copyright (C) 2020 Shyam Singh"
