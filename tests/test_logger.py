@@ -23,24 +23,64 @@ from logger_class import Logger
 
 
 class TestLogger(unittest.TestCase):
-    def test_logger(self):
-        filename = "logs/defg.log"
+    def test_info_logger(self):
         message = "test_logger is working?"
         # make sure logs directory is created
-        os.system("mkdir logs")
-        log = Logger(filename)
+        if not os.path.isdir("logs"):
+            os.system("mkdir logs")
+            print("directory created")
+        log = Logger()
         log.info(message)
 
-        with open(filename, "r") as log_file:
+        with open(log.filename, "r") as log_file:
             log_lines = log_file.readlines()
 
         # for this test to be reused, remove the file
-        os.system("rm " + filename)
+        os.system("rm " + log.filename)
 
         # get last line
         last_log_line = log_lines[-1].rstrip("\n")
 
         self.assertEqual(last_log_line, "[INFO] " + message)
+
+
+# keeping singleton test seperate to keep instance creation
+# in this class only, makes testing easy.
+# Or else, other tests might influence the instantiation.
+class TestLoggerSingleton(unittest.TestCase):
+    def test_singleton_property(self):
+        default_fname = "logs/log01.log"
+        fname1 = "logs/file1.log"
+        fname2 = "logs/file2.log"
+        fname3 = "logs/file3.log"
+
+        log1 = Logger()
+
+        log2 = Logger()
+
+        log3 = Logger()
+
+        # singleton logger will have only 1 instance
+        # each object's filename will be the last
+        # filename set i.e. 'default_fname'
+        self.assertEqual(log1.filename, default_fname)
+        self.assertEqual(log2.filename, default_fname)
+        self.assertEqual(log3.filename, default_fname)
+
+        log1.filename = fname1
+        log2.filename = fname2
+        log3.filename = fname3
+
+        # singleton logger will have only 1 instance
+        # each object's filename will be the last
+        # filename set i.e. 'fname3'.
+        self.assertEqual(log1.filename, fname3)
+        self.assertEqual(log2.filename, fname3)
+        self.assertEqual(log3.filename, fname3)
+
+        # due to singleton property, instances will be same.
+        self.assertEqual(log1, log2)
+        self.assertEqual(log3, log2)
 
 
 if __name__ == "__main__":

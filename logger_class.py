@@ -17,24 +17,45 @@
 
 
 class Logger(object):
-    def __init__(self, filename):
-        self.filename = filename
+    instance = None
+    fname = "logs/log01.log"
+    # Actual functionality of Logger class will be in private class.
 
-    def write_log(self, level, message):
-        with open(self.filename, "a+") as logging_file:
-            logging_file.write("[{0}] {1}\n".format(level, message))
+    class __LoggerSingleton:
+        def __init__(self):
+            self.filename = Logger.fname
 
-    def critical(self, message):
-        self.write_log("CRITICAL", message)
+        # not related to being singleton
+        # but it's better to keep common method as private
+        def _write_log(self, level, message):
+            with open(self.filename, "a+") as logging_file:
+                logging_file.write("[{0}] {1}\n".format(level, message))
 
-    def error(self, message):
-        self.write_log("ERROR", message)
+        def critical(self, message):
+            self._write_log("CRITICAL", message)
 
-    def warning(self, message):
-        self.write_log("WARNING", message)
+        def error(self, message):
+            self._write_log("ERROR", message)
 
-    def info(self, message):
-        self.write_log("INFO", message)
+        def warning(self, message):
+            self._write_log("WARNING", message)
 
-    def debug(self, message):
-        self.write_log("DEBUG", message)
+        def info(self, message):
+            self._write_log("INFO", message)
+
+        def debug(self, message):
+            self._write_log("DEBUG", message)
+
+    # 'static' class method which instantiates Logger class.
+    def __new__(cls):
+        if not Logger.instance:
+            Logger.instance = Logger.__LoggerSingleton()
+        return Logger.instance
+
+    # to call the private class attrs which is saved in
+    # 'instance' class variable.
+    def __getattr__(self, name):
+        return getattr(self.instance, name)
+
+    def __setattr__(self, name):
+        return setattr(self.instance, name)
