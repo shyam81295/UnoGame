@@ -18,14 +18,15 @@
 from collections import Counter, defaultdict
 import random
 
+from CardCollection import CardCollection
 from Card import Card
 import constant
+from Exceptions import InvalidInstantiationError
 
 
-class Deck:
+class Deck(CardCollection):
     def __init__(self):
-        self.cards_list = []
-        self.count_cards = defaultdict(int)
+        super().__init__()
         self.color_list = [
             constant.COLOR1,
             constant.COLOR2,
@@ -33,9 +34,6 @@ class Deck:
             constant.COLOR4,
         ]
         self.fill_cards()
-
-    def count_card(self, *, color=None, cardtype=None):
-        return self.count_cards[(color, cardtype)]
 
     # Different types of cards:
     # 4 Wild Cards
@@ -58,6 +56,9 @@ class Deck:
                 color=constant.COLOR_WILD, cardtype=constant.WILD_PLUS4_CARD
             )
             self.cards_list.append(card)
+
+        if not self.color_list:
+            raise InvalidInstantiationError("Color list cannot be None.")
 
         for color in self.color_list:
             #   1 Card 0
@@ -98,15 +99,3 @@ class Deck:
 
         for card in self.cards_list:
             self.count_cards[(card.color, card.cardtype)] += 1
-
-    def get_shuffled_deck(self):
-        # Using random.shuffle()
-        # Why this works?
-        # How this works?
-        print("Deck will be shuffled now.")
-        random.shuffle(self.cards_list)
-
-    # TODO:Replace this with __str__()
-    def print_deck(self):
-        deck = [(card.cardtype, card.color) for card in self.cards_list]
-        print(deck)

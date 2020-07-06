@@ -39,3 +39,6 @@ class Card:
         self.face = face
         self.color = color
         self.cardtype = cardtype
+
+    def __str__(self):
+        return str(self.color, self.cardtype)

@@ -37,7 +37,7 @@ class TestDeck(unittest.TestCase):
     def test_shuffled_deck_cards_list(self):
         deck = Deck()
         # deck is shuffled and then tested
-        deck.get_shuffled_deck()
+        deck.get_shuffled()
         self.count_deck_cards(deck)
 
     # TODO: Add more test cases for cards_count
