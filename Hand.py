@@ -1,5 +1,5 @@
-#   Filename:       constant.py
-#   Description:    This class will contain global constants for this project.
+#   Filename:       Hand.py
+#   Description:    This class will represent UNO Hand of a player.
 #
 #   Copyright (C) 2020 Shyam Singh
 #
@@ -15,30 +15,17 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-# colors
-COLOR1 = "red"
-COLOR2 = "green"
-COLOR3 = "blue"
-COLOR4 = "yellow"
-COLOR_WILD = "wild"
+from CardCollection import CardCollection
+import constant
 
-# card types
-WILD_CARD = "wild_card"
-WILD_PLUS4_CARD = "wild_plus4_card"
-SKIP_CARD = "skip_card"
-REVERSE_CARD = "reverse_card"
-PLUS2_CARD = "plus2_card"
-CARD0 = "card0"
-CARD1 = "card1"
-CARD2 = "card2"
-CARD3 = "card3"
-CARD4 = "card4"
-CARD5 = "card5"
-CARD6 = "card6"
-CARD7 = "card7"
-CARD8 = "card8"
-CARD9 = "card9"
 
-# card sizes
-HAND_SIZE_CLASSIC = 7
-DECK_MAX_SIZE = 108
+class Hand(CardCollection):
+    def __init__(self):
+        super().__init__()
+        self.color_list = [
+            constant.COLOR1,
+            constant.COLOR2,
+            constant.COLOR3,
+            constant.COLOR4,
+        ]
+        self.hand_starting_size = constant.HAND_SIZE_CLASSIC

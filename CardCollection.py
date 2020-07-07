@@ -21,6 +21,7 @@ import random
 
 from Card import Card
 import constant
+from Exceptions import LessCardsError
 
 
 class CardCollection(ABC):
@@ -42,6 +43,43 @@ class CardCollection(ABC):
         # How this works?
         random.shuffle(self.cards_list)
 
+    def get_top_card(self):
+        # we will peek from last, assuming card_collection as stack.
+        if len(self):
+            return self.cards_list[-1]
+        else:
+            raise LessCardsError("Card colelction might be empty!")
+
+    def push_card(self, card):
+        # we will push to last, assuming card_collection as stack.
+        if type(card) is Card:
+            self.cards_list.append(card)
+        else:
+            raise TypeError("Given object is not a Card.")
+
+    def pop_card(self):
+        # we will pop from last, assuming card_collection as stack.
+        if len(self):
+            return self.cards_list.pop()
+        else:
+            raise LessCardsError("Card colelction might be empty!")
+
+    def transfer_cards_from(self, card_collection_src, transfer_count):
+        # randomly transfer cards
+        if len(card_collection_src) >= transfer_count:
+            for num in range(transfer_count):
+                popped_card = card_collection_src.pop_card()
+                self.push_card(popped_card)
+        else:
+            raise LessCardsError(
+                "Source card collection do not have {} cards to transfer".format(
+                    transfer_count
+                )
+            )
+
     def __str__(self):
         collection = [(card.cardtype, card.color) for card in self.cards_list]
         return str(collection)
+
+    def __len__(self):
+        return len(self.cards_list)

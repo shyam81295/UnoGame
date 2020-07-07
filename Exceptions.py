@@ -19,3 +19,7 @@
 
 class InvalidInstantiationError(Exception):
     pass
+
+
+class LessCardsError(Exception):
+    pass
