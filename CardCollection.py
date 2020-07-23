@@ -15,7 +15,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from abc import ABC, abstractmethod
+from collections.abc import MutableSequence
 from collections import Counter, defaultdict
 import random
 
@@ -24,7 +24,14 @@ import constant
 from Exceptions import LessCardsError
 
 
-class CardCollection(ABC):
+def rank_card(card):
+    return (
+        card.color_sort_priority[card.color] * 100
+        + card.card_sort_priority[card.cardtype]
+    )
+
+
+class CardCollection(MutableSequence):
     def __init__(self):
         self.cards_list = []
         self.count_cards = defaultdict(int)
@@ -41,7 +48,7 @@ class CardCollection(ABC):
         # Using random.shuffle()
         # Why this works?
         # How this works?
-        random.shuffle(self.cards_list)
+        random.shuffle(self)
 
     def get_top_card(self):
         # we will peek from last, assuming card_collection as stack.
@@ -83,3 +90,21 @@ class CardCollection(ABC):
 
     def __len__(self):
         return len(self.cards_list)
+
+    def __getitem__(self, position):
+        return self.cards_list[position]
+
+    def __setitem__(self, position, card):
+        self.cards_list[position] = card
+
+    def __delitem__(self, position):
+        del self.cards_list[position]
+
+    def insert(self, position, card):
+        self.cards_list.append(None)
+        for idx in reversed(range(position + 1, len(self.cards_list) - 1)):
+            self.cards_list[idx + 1] = self.cards_list[idx]
+        self.cards_list[position] = card
+
+    def sort(self):
+        self.cards_list = sorted(self.cards_list, key=rank_card)
